@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version: 5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,10 +6,10 @@ import PackageDescription
 let package = Package(
     name: "Tweener",
     platforms: [
-        .macOS(.v10_12),
-        .iOS(.v10),
-        .tvOS(.v10),
-        .watchOS(.v3),
+        .iOS(.v13),
+        .macOS(.v11),
+        .tvOS(.v13),
+        .visionOS(.v1)
     ],
     products: [
         .library( name: "Tweener", targets: ["Tweener"]),
