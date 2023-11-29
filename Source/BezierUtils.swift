@@ -6,11 +6,13 @@
 //  Copyright © 2019 Alejandro Ramirez Varela. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #elseif os(macOS)
 import AppKit
 #endif
+
+import CoreGraphics
 
 public class BezierUtils
 {

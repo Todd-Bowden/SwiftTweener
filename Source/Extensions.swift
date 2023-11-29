@@ -5,7 +5,7 @@
 //  Created by Alejandro Ramirez Varela on 12/08/20.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 
 ///A collection of predefined animations ready to use for UIView.

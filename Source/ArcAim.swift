@@ -6,11 +6,13 @@
 //  Copyright © 2019 Alejandro Ramirez Varela. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #elseif os(macOS)
 import AppKit
 #endif
+
+import CoreGraphics
 
 /// Updates view's position over circular radius.
 public class ArcAim : RotationAim
@@ -90,7 +92,7 @@ public class ArcAim : RotationAim
             let rotation:CGPoint = BasicMath.arcRotationPoint(angle: _arcAngle + _arcAngleOffset,
                                                               radius:_radius)
             //Update position
-            #if os(iOS) || os(tvOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
             self.target!.center = CGPoint(x:_center.x + rotation.x, y:_center.y + rotation.y)
             #elseif os(macOS)
             self.target!.center( CGPoint(x:_center.x + rotation.x, y:_center.y + rotation.y) )

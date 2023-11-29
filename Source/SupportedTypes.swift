@@ -5,7 +5,7 @@
 //  Created by Alejandro Ramirez Varela on 09/09/20.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #elseif os(macOS)
 import AppKit
@@ -169,7 +169,7 @@ struct PrebuiltTypes{
                                                      }))
         #endif
         
-        #if os(iOS) || os(tvOS) || os(macOS)
+        #if os(iOS) || os(tvOS) || os(macOS) || os(visionOS)
         //CATransform3D
         list.append(Interpreter({ v -> CATransform3D in
                                     let f = v.map{ CGFloat($0) }
@@ -186,7 +186,7 @@ struct PrebuiltTypes{
         
         #endif
         //Os target iOS & tvOS
-        #if os(iOS) || os(tvOS) || os(watchOS)
+        #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
         //UIColor
         list.append(Interpreter({ v -> UIColor in
                                     //Map components as CGFloat

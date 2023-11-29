@@ -6,11 +6,13 @@
 //  Copyright © 2019 Alejandro Ramirez Varela. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #elseif os(macOS)
 import AppKit
 #endif
+
+import CoreGraphics
 
 #if os(macOS)
 
@@ -137,7 +139,7 @@ public class PathAim : RotationAim{
     
     private var _cgPath:CGPath?//Optional
 
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     private var _path:UIBezierPath?//Optional
     #elseif os(macOS)
     private var _path:NSBezierPath?//Optional
@@ -161,7 +163,7 @@ public class PathAim : RotationAim{
         self.cgPath = cgPath
     }
     
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     /** Initializes with a UIBezierPath
      - Parameter path: A UIBezierPath.
     */
@@ -201,7 +203,7 @@ public class PathAim : RotationAim{
         get {return _cgPath!}
     }
     
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     /// Gets the UIBezierPath.
     public var path:UIBezierPath
     {
@@ -326,7 +328,7 @@ public class PathAim : RotationAim{
         
         if (pathPoints.count == 1)//Linear
         {
-            #if os(iOS) || os(tvOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
                 self.target!.center = (originPoint == endPoint) ? endPoint : BezierUtils.linearInterpolation(time:pathInterpolation, start:originPoint, end:endPoint)
             #elseif os(macOS)
                 self.target!.center(  originPoint == endPoint ? endPoint : BezierUtils.linearInterpolation(time:pathInterpolation, start:originPoint, end:endPoint) )
@@ -338,7 +340,7 @@ public class PathAim : RotationAim{
         }
         if (pathPoints.count == 2)//Quad
         {
-            #if os(iOS) || os(tvOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
                 self.target!.center = BezierUtils.quadInterpolation(time:pathInterpolation,
                                                                     start:originPoint,
                                                                     control:pathPoints[0],
@@ -360,7 +362,7 @@ public class PathAim : RotationAim{
         if (pathPoints.count == 3)//Bezier
         {
             //trasnlate
-            #if os(iOS) || os(tvOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
             self.target!.center = BezierUtils.bezierCubicInterpolation(time:pathInterpolation,
                                                                       start:originPoint,
                                                                       controlStart:pathPoints[0],

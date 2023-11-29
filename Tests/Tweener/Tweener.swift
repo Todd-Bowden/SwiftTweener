@@ -1,5 +1,5 @@
 import XCTest
-@testable import TweenerPackage
+//@testable import TweenerPackage
 
 final class TweenerTests: XCTestCase {
     func testExample() {

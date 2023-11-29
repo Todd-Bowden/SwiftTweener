@@ -6,12 +6,13 @@
 //  Copyright © 2019 Alejandro Ramirez Varela. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #elseif os(macOS)
 import AppKit
 #endif
 
+import CoreGraphics
 
 public typealias AimRotationHandler = (CGFloat) -> Void
 
@@ -21,7 +22,7 @@ public class RotationAim
     ///An optional block to handle updates.
     public var onUpdateRotation:AimRotationHandler?
     
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     /// UIView target.
     public var target:UIView?
     #elseif os(macOS)
@@ -83,7 +84,7 @@ public class RotationAim
             if onUpdateRotation != nil { onUpdateRotation!(_rotation + _rotationOffset) }
             
             //Apply transform
-            #if os(iOS) || os(tvOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
             self.target?.layer.transform = CATransform3DMakeRotation(_rotation + _rotationOffset, 0.0, 0.0, 1.0)
             #elseif os(macOS)
             self.target?.layer?.transform = CATransform3DMakeRotation(_rotation + _rotationOffset, 0.0, 0.0, 1.0)
@@ -121,7 +122,7 @@ public class RotationAim
         set {
             _orientation = newValue
             //TODO:add offset?
-            #if os(iOS) || os(tvOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
             rotation = CGFloat(BasicMath.angle(start:target!.center, end:newValue))
             #elseif os(macOS)
             rotation = CGFloat(BasicMath.angle(start:target!.center(), end:newValue))
